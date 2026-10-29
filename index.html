@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>정명고등학교 2027학년도 1학기 부천 공동교육과정 수요 조사</title>
+  <!-- Pretendard 폰트 & Tailwind CSS -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+      background-color: #f8fafc;
+      color: #1e293b;
+    }
+    .subject-chip {
+      transition: all 0.15s ease-in-out;
+    }
+    .subject-chip:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+    .subject-chip:active {
+      transform: translateY(0);
+    }
+    .tab-btn.active {
+      background-color: #2563eb;
+      color: #ffffff;
+      font-weight: 600;
+      box-shadow: 0 2px 4px rgba(37, 99, 235, 0.25);
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-16">
+
+  <!-- 상단 헤더 (정명고등학교 문구 추가 & 노션 원문 보기 버튼 삭제) -->
+  <header class="bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-700 text-white shadow-md">
+    <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div>
+        <span class="inline-block px-3 py-1 bg-blue-500/30 border border-blue-300/30 rounded-full text-xs font-semibold tracking-wide mb-2">
+          정명고등학교 · 부천 공동교육과정 안내 및 신청
+        </span>
+        <h1 class="text-2xl sm:text-3xl font-bold tracking-tight">
+          📚 정명고등학교 2027학년도 1학기 부천 공동교육과정 수요 조사
+        </h1>
+        <p class="text-blue-100 text-sm mt-1">
+          우측 과목 안내표를 참고하여 본인이 수강을 희망하는 과목을 클릭하거나 직접 입력한 뒤 저장해 주세요.
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 mt-6 space-y-6">
+
+    <!-- 공동교육과정 FAQ 안내 배너 (접기/펼치기 가능) -->
+    <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+      <button type="button" onclick="toggleFaq()" class="w-full px-6 py-4 flex items-center justify-between bg-slate-50/80 hover:bg-slate-100/70 transition text-left">
+        <div class="flex items-center gap-2.5">
+          <span class="text-lg">💡</span>
+          <span class="font-bold text-slate-800 text-sm sm:text-base">공동교육과정이 무엇인가요? (수강 및 학생부 기재 안내)</span>
+        </div>
+        <span id="faqArrow" class="text-slate-500 text-sm font-medium transition-transform duration-200">▼ 접기</span>
+      </button>
+
+      <div id="faqContent" class="p-6 border-t border-slate-200 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+        <div class="bg-blue-50/60 border border-blue-100 rounded-xl p-4">
+          <h3 class="font-bold text-blue-900 mb-1.5 flex items-center gap-1.5">
+            <span>📌</span> 공동교육과정이 뭔가요?
+          </h3>
+          <p class="text-slate-700 leading-relaxed">
+            희망 학생이 적거나 교사 수급 곤란 등으로 단위 학교에서 개설이 어려운 <strong>소인수 또는 심화 과목</strong> 등을 학교 간 연계와 협력을 통해 운영하는 교육과정입니다.
+          </p>
+        </div>
+        <div class="bg-indigo-50/60 border border-indigo-100 rounded-xl p-4">
+          <h3 class="font-bold text-indigo-900 mb-1.5 flex items-center gap-1.5">
+            <span>📝</span> 학생부에 기재가 되나요?
+          </h3>
+          <p class="text-slate-700 leading-relaxed">
+            전체 수업 시수의 <strong>3분의 2 이상</strong>을 수강하여 이수 처리될 경우, <strong>과목세부능력특기사항</strong>에 수강 내용이 기재됩니다. 또한 고교학점제 교과목으로서의 학점을 인정받을 수도 있습니다.
+          </p>
+        </div>
+        <div class="bg-emerald-50/60 border border-emerald-100 rounded-xl p-4">
+          <h3 class="font-bold text-emerald-900 mb-1.5 flex items-center gap-1.5">
+            <span>✅</span> 신청은 어떻게 하나요?
+          </h3>
+          <p class="text-slate-700 leading-relaxed">
+            본 수요조사를 토대로 부천 관내에서 공동교육과정에 참여 중인 학교들이 협의를 하게 되고, 이후 개설 교과목을 안내하여 <strong>선착순으로 수강 신청</strong>을 받습니다. (추후 안내 예정)
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 메인 레이아웃: 좌측 폼 가로 폭 축소(lg:col-span-4) + 우측 교과목 안내 박스 확대(lg:col-span-8) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+      <!-- 좌측: 수요조사 작성 및 제출 폼 (4칼럼) -->
+      <section class="lg:col-span-4 bg-white rounded-2xl shadow-sm border border-slate-200 p-5 sm:p-6 lg:sticky lg:top-6">
+        <div class="border-b border-slate-100 pb-4 mb-4">
+          <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+            <span class="w-7 h-7 rounded-lg bg-blue-600 text-white flex items-center justify-center text-sm font-bold">1</span>
+            수요 조사서 작성 및 제출
+          </h2>
+          <p class="text-xs text-slate-500 mt-1">
+            우측 과목 안내에서 과목을 클릭하면 자동으로 과목명이 입력됩니다.
+          </p>
+        </div>
+
+        <!-- 중요 알림 박스 (2022 개정 교육과정 전체 교과목 보기 시트 링크 & 본교 개설 과목 안내) -->
+        <div class="mb-5 p-3.5 rounded-xl bg-amber-50 border-2 border-amber-300 text-xs sm:text-sm text-amber-950 leading-relaxed shadow-xs space-y-1.5">
+          <div class="font-bold text-amber-900 flex items-center gap-1.5">
+            <span>📢</span> 중요 알림
+          </div>
+          <p>
+            • 우측 교과목에 없는 과목은
+            <a href="https://docs.google.com/spreadsheets/d/19JO5uhluN400JZaKCBALahq0OMwINubY8OR1YhYUKM8/edit?usp=sharing"
+               target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center font-extrabold text-blue-700 underline decoration-2 underline-offset-2 hover:text-blue-900 bg-blue-100/80 px-1.5 py-0.5 rounded">
+              '여기'
+            </a>를 클릭하여 <strong>2022개정 교육과정 전체 교과목 보기</strong>를 통해 과목을 확인할 수 있습니다.
+          </p>
+          <p class="font-bold text-red-600">
+            • 본교에 개설된 과목은 신청할 수 없습니다.
+          </p>
+          <p class="font-bold text-blue-800">
+            • 단순 희망이 아니라 2027학년도 실제로 신청할 과목을 선택해 주세요.
+          </p>
+        </div>
+
+        <form id="surveyForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+          <!-- 학생 기본 정보 (학년: 1, 2학년만 / 반 / 번호) -->
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200/80">
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2.5">
+              학생 기본 정보
+            </label>
+            <div class="grid grid-cols-3 gap-2.5">
+              <div>
+                <label for="grade" class="block text-xs font-medium text-slate-600 mb-1">학년 <span class="text-red-500">*</span></label>
+                <select id="grade" required class="w-full rounded-lg border border-slate-300 bg-white px-2.5 py-2 text-sm focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 outline-none">
+                  <option value="">선택</option>
+                  <option value="1">1학년</option>
+                  <option value="2">2학년</option>
+                </select>
+              </div>
+              <div>
+                <label for="classNum" class="block text-xs font-medium text-slate-600 mb-1">반 <span class="text-red-500">*</span></label>
+                <input type="number" id="classNum" min="1" max="25" required placeholder="예: 3"
+                       class="w-full rounded-lg border border-slate-300 bg-white px-2.5 py-2 text-sm focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 outline-none">
+              </div>
+              <div>
+                <label for="studentNum" class="block text-xs font-medium text-slate-600 mb-1">번호 <span class="text-red-500">*</span></label>
+                <input type="number" id="studentNum" min="1" max="50" required placeholder="예: 15"
+                       class="w-full rounded-lg border border-slate-300 bg-white px-2.5 py-2 text-sm focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 outline-none">
+              </div>
+            </div>
+          </div>
+
+          <!-- 단일 희망 과목 입력 영역 -->
+          <div class="p-4 rounded-xl border-2 border-blue-500/80 bg-white space-y-4">
+            <!-- 과목명 입력 -->
+            <div>
+              <label for="subjectName" class="block text-xs font-semibold text-slate-700 mb-1">
+                희망 과목명 <span class="text-red-500">*</span>
+              </label>
+              <input type="text" id="subjectName" name="subjectName" required
+                     placeholder="우측 목록에서 클릭하거나 직접 입력"
+                     class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 outline-none">
+              <p id="subjectNoteHint" class="text-xs text-blue-600 font-medium mt-1.5 hidden"></p>
+            </div>
+
+            <!-- 개설 유형 선택 -->
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1.5">
+                개설 유형 <span class="text-red-500">*</span>
+              </label>
+              <div class="grid grid-cols-3 gap-2">
+                <label class="cursor-pointer">
+                  <input type="radio" name="openType" value="온라인" required class="peer sr-only">
+                  <div class="text-center py-2 px-1.5 rounded-lg border border-slate-300 text-xs font-medium text-slate-700 peer-checked:bg-blue-600 peer-checked:text-white peer-checked:border-blue-600 hover:bg-slate-50 transition">
+                    온라인
+                  </div>
+                </label>
+                <label class="cursor-pointer">
+                  <input type="radio" name="openType" value="오프라인" class="peer sr-only">
+                  <div class="text-center py-2 px-1.5 rounded-lg border border-slate-300 text-xs font-medium text-slate-700 peer-checked:bg-blue-600 peer-checked:text-white peer-checked:border-blue-600 hover:bg-slate-50 transition">
+                    오프라인
+                  </div>
+                </label>
+                <label class="cursor-pointer">
+                  <input type="radio" name="openType" value="온라인/오프라인" class="peer sr-only">
+                  <div class="text-center py-2 px-1.5 rounded-lg border border-slate-300 text-xs font-medium text-slate-700 peer-checked:bg-blue-600 peer-checked:text-white peer-checked:border-blue-600 hover:bg-slate-50 transition">
+                    온라인/오프라인
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- 과목 개설 희망 사유 선택 -->
+            <div>
+              <label for="reason" class="block text-xs font-semibold text-slate-700 mb-1">
+                과목 개설 희망 사유 <span class="text-red-500">*</span>
+              </label>
+              <select id="reason" name="reason" required
+                      class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 outline-none">
+                <option value="">사유를 선택해 주세요</option>
+                <option value="교육과정 편성상 미편성 과목">교육과정 편성상 미편성 과목</option>
+                <option value="학교 내 소수 선택">학교 내 소수 선택</option>
+                <option value="학교내 관련 교과 교사 없음">학교내 관련 교과 교사 없음</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- 제출 버튼 -->
+          <div class="pt-1">
+            <button type="submit" id="submitBtn"
+                    class="w-full py-3.5 px-6 rounded-xl bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold text-base shadow-lg shadow-blue-600/25 transition flex items-center justify-center gap-2">
+              <span id="submitBtnText">수요 조사 저장하기</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- 알림 메시지 영역 -->
+        <div id="statusAlert" class="hidden mt-4 p-3.5 rounded-xl text-xs sm:text-sm font-medium"></div>
+      </section>
+
+      <!-- 우측: 공동교육과정 희망 과목 안내 (8칼럼으로 확대하여 과목 탐색 효율 극대화) -->
+      <section class="lg:col-span-8 bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-7">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4 mb-4">
+          <div>
+            <h2 class="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span class="w-7 h-7 rounded-lg bg-indigo-600 text-white flex items-center justify-center text-sm font-bold">2</span>
+              공동교육과정 희망 과목 안내 (클릭하여 선택)
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1">
+              과목 버튼을 클릭하면 좌측 입력칸의 <strong>희망 과목명</strong>이 자동으로 채워집니다!
+            </p>
+          </div>
+        </div>
+
+        <!-- 파란색 하이라이트 안내 박스 (2026-2학기 개설 과목 안내) -->
+        <div class="mb-4 p-3.5 rounded-xl bg-blue-50 border border-blue-200 flex items-start gap-2.5 text-xs sm:text-sm text-blue-900">
+          <span class="text-base leading-none mt-0.5">🟦</span>
+          <div>
+            <span class="font-bold text-blue-700">파란색 글자 및 하이라이트 표시 과목</span>은
+            <strong>2026학년도 2학기 공동교육과정 개설 과목</strong>입니다. (총 17개 과목)
+          </div>
+        </div>
+
+        <!-- 검색창 & 탭 필터 -->
+        <div class="space-y-3 mb-6">
+          <div class="relative">
+            <input type="text" id="subjectSearchInput" oninput="filterSubjects()"
+                   placeholder="희망 과목명 검색 (예: 화학 실험, 인공지능 수학, 프로그래밍, 인간과 심리...)"
+                   class="w-full pl-10 pr-9 py-2.5 rounded-xl border border-slate-300 text-sm focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 outline-none">
+            <span class="absolute left-3.5 top-3 text-slate-400 text-sm">🔍</span>
+            <button type="button" id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute right-3 top-2.5 text-slate-400 hover:text-slate-600 text-sm px-1">✕</button>
+          </div>
+
+          <div class="flex flex-wrap gap-2" id="categoryTabs">
+            <button type="button" onclick="setCategoryTab('ALL')" data-tab="ALL" class="tab-btn active px-3.5 py-2 rounded-lg text-xs sm:text-sm bg-slate-100 text-slate-700 hover:bg-slate-200 transition">
+              전체 보기
+            </button>
+            <button type="button" onclick="setCategoryTab('TABLE1')" data-tab="TABLE1" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm bg-slate-100 text-slate-700 hover:bg-slate-200 transition">
+              1. 교과(군)별 과목
+            </button>
+            <button type="button" onclick="setCategoryTab('TABLE2')" data-tab="TABLE2" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm bg-slate-100 text-slate-700 hover:bg-slate-200 transition">
+              2. 계열별 과목
+            </button>
+            <button type="button" onclick="setCategoryTab('TABLE3')" data-tab="TABLE3" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm bg-slate-100 text-slate-700 hover:bg-slate-200 transition">
+              3. 전문교과
+            </button>
+            <button type="button" onclick="setCategoryTab('ACTIVE_ONLY')" data-tab="ACTIVE_ONLY" class="tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm bg-blue-100 text-blue-800 hover:bg-blue-200 font-semibold transition">
+              ⭐ 2026-2학기 개설 과목
+            </button>
+          </div>
+        </div>
+
+        <!-- 교과목 테이블 렌더링 영역 -->
+        <div id="catalogContainer" class="space-y-8"></div>
+
+        <!-- 3번 항목 하단 안내 문구 -->
+        <div class="mt-6 p-4 rounded-xl bg-amber-50 border border-amber-200 text-xs sm:text-sm text-amber-900 space-y-1">
+          <p class="font-bold">💡 3번 항목(전문교과)에 대해, 자신의 희망 분야/관심 분야와 관련된 전문교과에 대한 수요 조사가 있는지 궁금하다면!!</p>
+          <p class="text-amber-800">➔ <strong>제1교무실 교육과정부 차민경 선생님</strong>을 찾아오세요. (목록에 없는 과목은 좌측 상단 중요 알림의 <strong>'여기'</strong>를 눌러 확인 후 과목명 칸에 직접 입력하여 신청할 수 있습니다.)</p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- 완료 모달 -->
+  <div id="successModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-xs hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-100 text-center space-y-4">
+      <div class="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl mx-auto">
+        ✓
+      </div>
+      <h3 class="text-xl font-bold text-slate-900">수요 조사 제출 완료!</h3>
+      <p id="modalMessage" class="text-sm text-slate-600 leading-relaxed"></p>
+      <div id="modalSummary" class="bg-slate-50 rounded-xl p-3.5 text-left text-xs text-slate-700 space-y-1.5 border border-slate-200"></div>
+      <div class="pt-2 flex gap-2">
+        <button type="button" onclick="closeModalAndReset()" class="w-full py-2.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm transition">
+          확인 (추가 신청 또는 새로 작성)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 본교 개설 과목 선택 불가 안내 팝업 모달 -->
+  <div id="schoolSubjectModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-xs hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-red-100 text-center space-y-4">
+      <div class="w-14 h-14 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-2xl mx-auto font-bold">
+        !
+      </div>
+      <h3 class="text-lg font-bold text-slate-900">본교에 개설된 과목입니다.</h3>
+      <p id="schoolSubjectModalDesc" class="text-sm text-slate-600 leading-relaxed">
+        선택하신 과목은 본교에 개설된 과목이므로 공동교육과정으로 신청할 수 없습니다.<br>다른 과목을 선택해 주세요.
+      </p>
+      <div class="pt-2">
+        <button type="button" onclick="closeSchoolSubjectModal()" class="w-full py-2.5 px-4 rounded-xl bg-red-600 hover:bg-red-700 text-white font-semibold text-sm transition">
+          확인 (다른 과목 선택하기)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /**
+     * [GitHub Pages 배포용 설정]
+     * 구글 시트 확장 프로그램(Apps Script)에서 [웹 앱]으로 배포한 뒤 발급받은 URL(https://script.google.com/macros/s/.../exec)을
+     * 아래 GAS_WEB_APP_URL 변수에 넣어주세요.
+     * (만약 비어 있거나 설정 전이라면 웹앱 화면에서 1회 입력하여 브라우저에 저장할 수도 있습니다.)
+     */
+    const DEFAULT_GAS_WEB_APP_URL = '여기에_앱스스크립트_웹앱_URL을_붙여넣으세요';
+
+    /**
+     * 2026-2학기 개설 과목 (총 17개 과목):
+     * 화학 실험, 보건, 인간과 심리, 물리학 실험, 고급 대수, 교육의 이해, 심화 체육 전공 실기,
+     * 프로그래밍, 인공지능 수학, 매체 의사소통, 고급 화학, 인공지능 모델링, 고급 물리학,
+     * 소설 창작, 국제 정치, 생명과학 실험, 국제 경제
+     */
+    const OPEN_SUBJECTS_2026_2 = new Set([
+      '화학 실험',
+      '보건',
+      '인간과 심리',
+      '물리학 실험',
+      '고급 대수',
+      '교육의 이해',
+      '심화 체육 전공 실기',
+      '프로그래밍',
+      '인공지능 수학',
+      '매체 의사소통',
+      '고급 화학',
+      '인공지능 모델링',
+      '고급 물리학',
+      '소설 창작',
+      '국제 정치',
+      '생명과학 실험',
+      '국제 경제'
+    ]);
+
+    /**
+     * 본교에 개설된 과목 (선택 시 팝업 안내 후 다른 과목 선택 유도, 구글 시트 저장 제외)
+     */
+    const SCHOOL_OPENED_SUBJECTS = [
+      '데이터 과학',
+      '일본어 회화',
+      '인간과 심리',
+      '심화 일본어',
+      '일본 문화'
+    ];
+
+    const CATALOG_DATA = [
+      {
+        id: 'TABLE1',
+        title: '1. 교과(군)별 희망 과목 조사',
+        subtitle: '해당 항목에 희망 과목이 없다면 2번 또는 3번 항목으로 가보세요.',
+        columns: ['구분', '일반 선택 과목', '진로 선택 과목', '융합 선택 과목'],
+        rows: [
+          {
+            category: '국어',
+            col1: [],
+            col2: [{ name: '직무 의사소통' }],
+            col3: [{ name: '매체 의사소통' }]
+          },
+          {
+            category: '수학',
+            col1: [],
+            col2: [{ name: '인공지능 수학' }, { name: '직무 수학' }],
+            col3: [{ name: '실용 통계' }, { name: '수학과제 탐구' }]
+          },
+          {
+            category: '영어',
+            col1: [],
+            col2: [{ name: '영어 발표와 토론' }, { name: '직무 영어' }],
+            col3: [{ name: '실생활 영어 회화' }, { name: '세계 문화와 영어' }]
+          },
+          {
+            category: '사회(역사/도덕 포함)',
+            col1: [],
+            col2: [{ name: '정치' }, { name: '경제' }],
+            col3: []
+          },
+          {
+            category: '예술',
+            col1: [],
+            col2: [{ name: '음악 연주와 창작' }],
+            col3: [{ name: '음악과 미디어' }, { name: '미술과 매체' }]
+          },
+          {
+            category: '기술가정/정보',
+            col1: [],
+            col2: [{ name: '로봇과 공학세계' }, { name: '생활과학 탐구' }, { name: '데이터 과학' }],
+            col3: [{ name: '창의 공학 설계' }, { name: '지식 재산 일반' }, { name: '생애 설계와 자립' }, { name: '아동 발달과 부모' }]
+          },
+          {
+            category: '제2외국어/한문',
+            col1: [],
+            col2: [
+              { name: '독일어 회화' }, { name: '프랑스어 회화' }, { name: '스페인어 회화' }, { name: '중국어 회화' },
+              { name: '일본어 회화' }, { name: '러시아어 회화' }, { name: '아랍어 회화' }, { name: '베트남어 회화' },
+              { name: '심화 독일어' }, { name: '심화 프랑스어' }, { name: '심화 스페인어' }, { name: '심화 중국어' },
+              { name: '심화 일본어' }, { name: '심화 러시아어' }, { name: '심화 아랍어' }, { name: '심화 베트남어' }
+            ],
+            col3: [
+              { name: '독일어권 문화' }, { name: '프랑스어권 문화' }, { name: '스페인어권 문화' },
+              { name: '중국 문화' }, { name: '러시아 문화' }, { name: '아랍 문화' }, { name: '베트남 문화' }
+            ]
+          },
+          {
+            category: '교양',
+            col1: [{ name: '진로와 직업' }],
+            col2: [
+              { name: '인간과 심리' },
+              { name: '논리와 사고' },
+              { name: '교육의 이해' },
+              { name: '삶과 종교' },
+              { name: '보건' }
+            ],
+            col3: [{ name: '인간과 경제활동' }, { name: '논술' }]
+          }
+        ]
+      },
+      {
+        id: 'TABLE2',
+        title: '2. 계열별 희망 과목 조사',
+        subtitle: '해당 항목에 희망 과목이 없다면 3번 항목으로 가보세요.',
+        columns: ['구분', '진로 선택 과목', '융합 선택 과목'],
+        rows: [
+          {
+            category: '과학 계열(수학)',
+            col1: [{ name: '전문 수학' }, { name: '이산 수학' }, { name: '고급 기하' }, { name: '고급 대수' }, { name: '고급 미적분' }],
+            col2: []
+          },
+          {
+            category: '과학 계열(과학)',
+            col1: [
+              { name: '고급 물리학' },
+              { name: '고급 화학' },
+              { name: '고급 생명과학' },
+              { name: '고급 지구과학' },
+              { name: '과학과제 연구' }
+            ],
+            col2: [
+              { name: '물리학 실험' },
+              { name: '화학 실험' },
+              { name: '생명과학 실험' },
+              { name: '지구과학 실험' }
+            ]
+          },
+          {
+            category: '과학 계열(정보)',
+            col1: [{ name: '정보과학' }],
+            col2: []
+          },
+          {
+            category: '체육 계열',
+            col1: [
+              { name: '스포츠 개론' }, { name: '육상' }, { name: '체조' }, { name: '수상 스포츠' },
+              { name: '기초 체육 전공 실기' },
+              { name: '심화 체육 전공 실기' },
+              { name: '고급 체육 전공 실기' },
+              { name: '스포츠 경기 체력' }, { name: '스포츠 경기 기술' }, { name: '스포츠 경기 분석' }
+            ],
+            col2: [{ name: '스포츠 교육' }, { name: '스포츠 생리의학' }, { name: '스포츠 행정 및 경영' }]
+          },
+          {
+            category: '예술 계열',
+            col1: [
+              { name: '음악 이론' }, { name: '음악사' }, { name: '시창·청음' }, { name: '음악 전공 실기' },
+              { name: '합창·합주' }, { name: '음악 공연 실습' }, { name: '미술 이론' }, { name: '드로잉' },
+              { name: '미술사' }, { name: '미술 전공 실기' }, { name: '조형 탐구' }, { name: '무용의 이해' },
+              { name: '무용과 몸' }, { name: '무용 기초 실기' }, { name: '무용 전공 실기' }, { name: '안무' },
+              { name: '무용 제작 실습' }, { name: '무용 감상과 비평' }, { name: '문예 창작의 이해' }, { name: '문장론' },
+              { name: '문학 감상과 비평' }, { name: '시 창작' },
+              { name: '소설 창작' },
+              { name: '극 창작' }, { name: '연극과 몸' }, { name: '연극과 말' }, { name: '연기' },
+              { name: '무대 미술과 기술' }, { name: '연극 제작 실습' }, { name: '연극 감상과 비평' },
+              { name: '영화의 이해' }, { name: '촬영·조명' }, { name: '편집·사운드' }, { name: '영화 제작 실습' },
+              { name: '영화 감상과 비평' }, { name: '사진의 이해' }, { name: '사진 촬영' }, { name: '사진 표현 기법' },
+              { name: '영상 제작의 이해' }, { name: '사진 감상과 비평' }
+            ],
+            col2: [
+              { name: '미술 매체 탐구' }, { name: '미술과 사회' }, { name: '무용과 매체' },
+              { name: '문학과 매체' }, { name: '연극과 삶' }, { name: '영화와 삶' }, { name: '사진과 삶' }
+            ]
+          },
+          {
+            category: '외국어·국제계열(영어)',
+            col1: [{ name: '심화 영어 회화Ⅰ' }, { name: '심화 영어 회화Ⅱ' }],
+            col2: []
+          },
+          {
+            category: '외국어·국제계열(사회(역사/도덕 포함))',
+            col1: [
+              { name: '국제 정치' },
+              { name: '국제 경제' },
+              { name: '국제법' }, { name: '지역 이해' }, { name: '한국 사회의 이해' }, { name: '비교 문화' },
+              { name: '세계 문제와 미래' }, { name: '사회국제 관계와 국제기구' }, { name: '현대 세계의 변화' },
+              { name: '사회 탐구 방법' }, { name: '사회과제 연구' }
+            ],
+            col2: []
+          },
+          {
+            category: '외국어·국제계열(제2외국어)',
+            col1: [
+              { name: '전공 기초 독일어' }, { name: '독일어 회화' }, { name: '독일어 회화Ⅱ' }, { name: '독일어 독해와 작문Ⅰ' }, { name: '독일어 독해와 작문Ⅱ' }, { name: '심화 독일어' },
+              { name: '전공 기초 프랑스어' }, { name: '프랑스어 회화Ⅰ' }, { name: '프랑스어 회화Ⅱ' }, { name: '프랑스어 독해와 작문Ⅰ' }, { name: '프랑스어 독해와 작문Ⅱ' }, { name: '심화 프랑스어' },
+              { name: '전공 기초 스페인어' }, { name: '스페인어 회화Ⅰ' }, { name: '스페인어 회화Ⅱ' }, { name: '스페인어 독해와 작문Ⅰ' }, { name: '스페인어 독해와 작문Ⅱ' }, { name: '심화 스페인어' },
+              { name: '중국어 회화Ⅱ' }, { name: '중국어 독해와 작문Ⅰ' }, { name: '중국어 독해와 작문Ⅱ' }, { name: '심화 중국어' },
+              { name: '일본어 회화Ⅱ' }, { name: '일본어 독해와 작문Ⅰ' }, { name: '일본어 독해와 작문Ⅱ' }, { name: '심화 일본어' },
+              { name: '전공 기초 러시아어' }, { name: '러시아어 회화Ⅰ' }, { name: '러시아어 회화Ⅱ' }, { name: '러시아어 독해와 작문Ⅰ' }, { name: '러시아어 독해와 작문Ⅱ' }, { name: '심화 러시아어' },
+              { name: '전공 기초 아랍어' }, { name: '아랍어 회화Ⅰ' }, { name: '아랍어 회화Ⅱ' }, { name: '아랍어 독해와 작문Ⅰ' }, { name: '아랍어 독해와 작문Ⅱ' }, { name: '심화 아랍어' },
+              { name: '전공 기초 베트남어' }, { name: '베트남어 회화Ⅰ' }, { name: '베트남어 회화Ⅱ' }, { name: '베트남어 독해와 작문Ⅰ' }, { name: '베트남어 독해와 작문Ⅱ' }, { name: '심화 베트남어' }
+            ],
+            col2: [
+              { name: '독일어권 문화' }, { name: '프랑스어권 문화' }, { name: '스페인어권 문화' },
+              { name: '중국 문화' }, { name: '러시아 문화' }, { name: '아랍 문화' }, { name: '베트남 문화' }
+            ]
+          }
+        ]
+      },
+      {
+        id: 'TABLE3',
+        title: '3. 전문교과 희망 과목 조사',
+        subtitle: '*전문교과 중 개설 과목 예시입니다.',
+        columns: ['구분', '전공 일반', '전공 실무'],
+        rows: [
+          {
+            category: '정보·통신',
+            col1: [{ name: '프로그래밍' }],
+            col2: [{ name: '인공지능 모델링' }, { name: '빅 데이터 분석' }]
+          }
+        ]
+      }
+    ];
+
+    let currentTab = 'ALL';
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderCatalog();
+    });
+
+    // FAQ 토글
+    function toggleFaq() {
+      const content = document.getElementById('faqContent');
+      const arrow = document.getElementById('faqArrow');
+      if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        arrow.textContent = '▼ 접기';
+      } else {
+        content.classList.add('hidden');
+        arrow.textContent = '▶ 펼치기';
+      }
+    }
+
+    // 과목이 2026-2학기 개설 과목인지 여부 확인
+    function isSubjectActive(name) {
+      return OPEN_SUBJECTS_2026_2.has(String(name || '').trim());
+    }
+
+    // 과목이 본교 개설 과목인지 여부 확인 (공백 무시 비교 포함)
+    function isSchoolOpenedSubject(name) {
+      const normalized = String(name || '').replace(/\s+/g, '');
+      if (!normalized) return false;
+      return SCHOOL_OPENED_SUBJECTS.some(subj => subj.replace(/\s+/g, '') === normalized);
+    }
+
+    // 본교 개설 과목 안내 팝업 열기 및 입력란 초기화
+    function openSchoolSubjectModal(subjectName) {
+      const input = document.getElementById('subjectName');
+      const hint = document.getElementById('subjectNoteHint');
+      input.value = '';
+      hint.textContent = '';
+      hint.classList.add('hidden');
+
+      const desc = document.getElementById('schoolSubjectModalDesc');
+      if (subjectName) {
+        desc.innerHTML = `<strong class="text-red-600">'${escapeHtml(subjectName)}'</strong> 과목은 본교에 개설된 과목이므로 신청할 수 없습니다.<br>다른 과목을 선택해 주세요.`;
+      } else {
+        desc.innerHTML = `본교에 개설된 과목이므로 신청할 수 없습니다.<br>다른 과목을 선택해 주세요.`;
+      }
+
+      const modal = document.getElementById('schoolSubjectModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      showAlert('본교에 개설된 과목입니다. 다른 과목을 선택해 주세요.', 'error');
+    }
+
+    function closeSchoolSubjectModal() {
+      const modal = document.getElementById('schoolSubjectModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.getElementById('subjectName').focus();
+    }
+
+    // 우측 카탈로그에서 과목 칩 클릭 시 좌측 폼에 자동 입력
+    function selectSubjectFromCatalog(subjectName) {
+      if (isSchoolOpenedSubject(subjectName)) {
+        openSchoolSubjectModal(subjectName);
+        return;
+      }
+
+      const input = document.getElementById('subjectName');
+      const hint = document.getElementById('subjectNoteHint');
+      const active = isSubjectActive(subjectName);
+
+      input.value = subjectName;
+      if (active) {
+        hint.textContent = '⭐ 2026학년도 2학기 공동교육과정 개설 과목입니다.';
+        hint.classList.remove('hidden');
+      } else {
+        hint.textContent = '';
+        hint.classList.add('hidden');
+      }
+
+      input.classList.add('ring-2', 'ring-blue-500');
+      setTimeout(() => input.classList.remove('ring-2', 'ring-blue-500'), 600);
+
+      showAlert(`'${subjectName}' 과목이 선택되었습니다. 개설 유형과 희망 사유를 선택해 주세요.`, 'info');
+    }
+
+    // 탭 전환
+    function setCategoryTab(tabId) {
+      currentTab = tabId;
+      document.querySelectorAll('#categoryTabs .tab-btn').forEach(btn => {
+        if (btn.getAttribute('data-tab') === tabId) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+      renderCatalog();
+    }
+
+    // 검색 필터
+    function filterSubjects() {
+      const query = document.getElementById('subjectSearchInput').value.trim();
+      const clearBtn = document.getElementById('clearSearchBtn');
+      if (query.length > 0) {
+        clearBtn.classList.remove('hidden');
+      } else {
+        clearBtn.classList.add('hidden');
+      }
+      renderCatalog();
+    }
+
+    function clearSearch() {
+      document.getElementById('subjectSearchInput').value = '';
+      document.getElementById('clearSearchBtn').classList.add('hidden');
+      renderCatalog();
+    }
+
+    // 과목 칩 HTML 생성
+    function renderSubjectChips(items, query, activeOnly) {
+      if (!items || items.length === 0) {
+        return '<span class="text-slate-300 text-xs">-</span>';
+      }
+
+      const filtered = items.filter(item => {
+        const active = isSubjectActive(item.name);
+        if (activeOnly && !active) return false;
+        if (!query) return true;
+        return item.name.toLowerCase().includes(query.toLowerCase());
+      });
+
+      if (filtered.length === 0) {
+        return '<span class="text-slate-300 text-xs">-</span>';
+      }
+
+      return `<div class="flex flex-wrap gap-2">` + filtered.map(item => {
+        const safeName = escapeHtml(item.name);
+        const active = isSubjectActive(item.name);
+        if (active) {
+          return `
+            <button type="button"
+                    onclick="selectSubjectFromCatalog('${safeName}')"
+                    class="subject-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-bold bg-blue-100 text-blue-800 border-2 border-blue-300 hover:bg-blue-200 text-left">
+              <span>${safeName}</span>
+              <span class="text-[11px] font-semibold text-blue-700 bg-white/90 px-1.5 py-0.5 rounded">2026-2 개설</span>
+            </button>
+          `;
+        } else {
+          return `
+            <button type="button"
+                    onclick="selectSubjectFromCatalog('${safeName}')"
+                    class="subject-chip inline-flex items-center px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium bg-slate-100 text-slate-700 border border-slate-200/80 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-200 text-left">
+              ${safeName}
+            </button>
+          `;
+        }
+      }).join('') + `</div>`;
+    }
+
+    // 카탈로그 전체 렌더링
+    function renderCatalog() {
+      const container = document.getElementById('catalogContainer');
+      const query = document.getElementById('subjectSearchInput').value.trim();
+      const activeOnly = (currentTab === 'ACTIVE_ONLY');
+
+      let html = '';
+      let visibleRowCount = 0;
+
+      CATALOG_DATA.forEach(table => {
+        if (currentTab !== 'ALL' && currentTab !== 'ACTIVE_ONLY' && currentTab !== table.id) {
+          return;
+        }
+
+        const isFourCol = (table.columns.length === 4);
+
+        const rowsHtml = table.rows.map(row => {
+          const allItemsInRow = [...(row.col1 || []), ...(row.col2 || []), ...(row.col3 || [])];
+          const hasMatch = allItemsInRow.some(item => {
+            const active = isSubjectActive(item.name);
+            if (activeOnly && !active) return false;
+            if (!query) return true;
+            const fullText = `${row.category} ${item.name}`.toLowerCase();
+            return fullText.includes(query.toLowerCase());
+          });
+
+          if ((query || activeOnly) && !hasMatch) {
+            return '';
+          }
+
+          visibleRowCount++;
+          const categoryMatched = query && row.category.toLowerCase().includes(query.toLowerCase());
+          const effectiveQuery = categoryMatched ? '' : query;
+
+          if (isFourCol) {
+            return `
+              <tr class="border-t border-slate-200 hover:bg-slate-50/50 transition">
+                <th class="p-3.5 bg-slate-50/80 font-bold text-slate-700 text-xs sm:text-sm text-left align-top w-32 sm:w-40 border-r border-slate-200">
+                  ${escapeHtml(row.category)}
+                </th>
+                <td class="p-3.5 align-top border-r border-slate-200 w-36">
+                  ${renderSubjectChips(row.col1, effectiveQuery, activeOnly)}
+                </td>
+                <td class="p-3.5 align-top border-r border-slate-200">
+                  ${renderSubjectChips(row.col2, effectiveQuery, activeOnly)}
+                </td>
+                <td class="p-3.5 align-top">
+                  ${renderSubjectChips(row.col3, effectiveQuery, activeOnly)}
+                </td>
+              </tr>
+            `;
+          } else {
+            return `
+              <tr class="border-t border-slate-200 hover:bg-slate-50/50 transition">
+                <th class="p-3.5 bg-slate-50/80 font-bold text-slate-700 text-xs sm:text-sm text-left align-top w-36 sm:w-48 border-r border-slate-200">
+                  ${escapeHtml(row.category)}
+                </th>
+                <td class="p-3.5 align-top border-r border-slate-200">
+                  ${renderSubjectChips(row.col1, effectiveQuery, activeOnly)}
+                </td>
+                <td class="p-3.5 align-top">
+                  ${renderSubjectChips(row.col2, effectiveQuery, activeOnly)}
+                </td>
+              </tr>
+            `;
+          }
+        }).join('');
+
+        if (!rowsHtml) return;
+
+        const headerColsHtml = table.columns.map((col, i) => `
+          <th class="p-3.5 text-left text-xs sm:text-sm font-bold text-slate-600 uppercase tracking-wider ${i < table.columns.length - 1 ? 'border-r border-slate-200' : ''}">
+            ${escapeHtml(col)}
+          </th>
+        `).join('');
+
+        html += `
+          <div class="space-y-3">
+            <div>
+              <h3 class="text-base sm:text-lg font-bold text-slate-800">${escapeHtml(table.title)}</h3>
+              <p class="text-xs sm:text-sm text-slate-500">${escapeHtml(table.subtitle)}</p>
+            </div>
+            <div class="overflow-x-auto rounded-xl border border-slate-200">
+              <table class="w-full border-collapse text-sm">
+                <thead class="bg-slate-100/90">
+                  <tr>${headerColsHtml}</tr>
+                </thead>
+                <tbody>
+                  ${rowsHtml}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        `;
+      });
+
+      if (visibleRowCount === 0) {
+        html = `
+          <div class="py-12 text-center text-slate-500 bg-slate-50 rounded-xl border border-dashed border-slate-300">
+            <p class="font-semibold text-sm">검색 조건에 맞는 과목이 없습니다.</p>
+            <p class="text-xs mt-1">목록에 없는 과목도 좌측 중요 알림의 '여기'를 클릭해 확인 후 직접 입력하여 신청할 수 있습니다.</p>
+          </div>
+        `;
+      }
+
+      container.innerHTML = html;
+    }
+
+    // 알림 표시
+    function showAlert(message, type = 'info') {
+      const alertBox = document.getElementById('statusAlert');
+      alertBox.classList.remove('hidden', 'bg-blue-50', 'text-blue-800', 'border-blue-200', 'bg-red-50', 'text-red-800', 'border-red-200', 'bg-amber-50', 'text-amber-800', 'border-amber-200');
+      alertBox.classList.add('border');
+
+      if (type === 'error') {
+        alertBox.classList.add('bg-red-50', 'text-red-800', 'border-red-200');
+      } else if (type === 'warning') {
+        alertBox.classList.add('bg-amber-50', 'text-amber-800', 'border-amber-200');
+      } else {
+        alertBox.classList.add('bg-blue-50', 'text-blue-800', 'border-blue-200');
+      }
+
+      alertBox.textContent = message;
+    }
+
+    // 폼 제출 처리
+    function handleFormSubmit(event) {
+      event.preventDefault();
+
+      const grade = document.getElementById('grade').value.trim();
+      const classNum = document.getElementById('classNum').value.trim();
+      const studentNum = document.getElementById('studentNum').value.trim();
+      const subjectName = document.getElementById('subjectName').value.trim();
+      const checkedRadio = document.querySelector('input[name="openType"]:checked');
+      const openType = checkedRadio ? checkedRadio.value : '';
+      const reason = document.getElementById('reason').value;
+
+      if (!grade || !classNum || !studentNum) {
+        showAlert('학년, 반, 번호를 모두 입력해 주세요.', 'error');
+        return;
+      }
+      if (!subjectName) {
+        showAlert('희망 과목명을 입력해 주세요.', 'error');
+        document.getElementById('subjectName').focus();
+        return;
+      }
+
+      // 본교에 개설된 과목인지 확인 -> 팝업 표시 후 구글 시트 저장 중단 및 재선택 유도
+      if (isSchoolOpenedSubject(subjectName)) {
+        openSchoolSubjectModal(subjectName);
+        return;
+      }
+
+      if (!openType) {
+        showAlert('개설 유형(온라인/오프라인)을 선택해 주세요.', 'error');
+        return;
+      }
+      if (!reason) {
+        showAlert('과목 개설 희망 사유를 선택해 주세요.', 'error');
+        document.getElementById('reason').focus();
+        return;
+      }
+
+      const payload = { grade, classNum, studentNum, subjectName, openType, reason };
+
+      // 버튼 로딩 상태
+      const submitBtn = document.getElementById('submitBtn');
+      const submitBtnText = document.getElementById('submitBtnText');
+      submitBtn.disabled = true;
+      submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
+      submitBtnText.textContent = '구글 시트에 저장 중...';
+
+      // 1) Google Apps Script 내부(HtmlService)에서 실행 중인 경우
+      if (typeof google !== 'undefined' && google.script && google.script.run) {
+        google.script.run
+          .withSuccessHandler((res) => {
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+            submitBtnText.textContent = '수요 조사 저장하기';
+
+            if (res && res.success) {
+              openSuccessModal(payload, res.message);
+            } else if (res && res.isSchoolOpened) {
+              openSchoolSubjectModal(subjectName);
+            } else {
+              showAlert((res && res.message) || '저장에 실패했습니다.', 'error');
+            }
+          })
+          .withFailureHandler((err) => {
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+            submitBtnText.textContent = '수요 조사 저장하기';
+            showAlert('서버 통신 중 오류가 발생했습니다: ' + (err.message || err), 'error');
+          })
+          .submitSurvey(payload);
+        return;
+      }
+
+      // 2) GitHub Pages 등 외부 정적 웹호스팅 환경에서 실행 중인 경우 (fetch POST 요청)
+      const apiUrl = (DEFAULT_GAS_WEB_APP_URL && DEFAULT_GAS_WEB_APP_URL.startsWith('https://script.google.com/'))
+        ? DEFAULT_GAS_WEB_APP_URL.trim()
+        : '';
+
+      if (!apiUrl) {
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+        submitBtnText.textContent = '수요 조사 저장하기';
+        showAlert('index.html 파일 상단의 DEFAULT_GAS_WEB_APP_URL 변수에 구글 앱스 스크립트 웹앱 URL(https://script.google.com/.../exec)을 설정해 주세요.', 'warning');
+        return;
+      }
+
+      fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          // CORS preflight(OPTIONS) 우회를 위해 text/plain으로 JSON 문자열 전송
+          'Content-Type': 'text/plain;charset=utf-8'
+        },
+        body: JSON.stringify(payload)
+      })
+        .then(response => response.json())
+        .then(res => {
+          submitBtn.disabled = false;
+          submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+          submitBtnText.textContent = '수요 조사 저장하기';
+
+          if (res && res.success) {
+            openSuccessModal(payload, res.message);
+          } else if (res && res.isSchoolOpened) {
+            openSchoolSubjectModal(subjectName);
+          } else {
+            showAlert((res && res.message) || '저장에 실패했습니다.', 'error');
+          }
+        })
+        .catch(err => {
+          submitBtn.disabled = false;
+          submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+          submitBtnText.textContent = '수요 조사 저장하기';
+          showAlert('구글 시트 서버와 통신 중 오류가 발생했습니다. 웹앱 배포 URL과 액세스 권한(모든 사용자) 설정을 확인해 주세요.', 'error');
+          console.error(err);
+        });
+    }
+
+    function openSuccessModal(payload, message) {
+      const modal = document.getElementById('successModal');
+      document.getElementById('modalMessage').textContent = message;
+
+      const summaryHtml = `
+        <div class="font-bold text-slate-900">학번: ${escapeHtml(payload.grade)}학년 ${escapeHtml(payload.classNum)}반 ${escapeHtml(payload.studentNum)}번</div>
+        <div class="pt-1 border-t border-slate-200/70">
+          <span class="font-semibold text-blue-700">희망 과목: ${escapeHtml(payload.subjectName)}</span>
+        </div>
+        <div class="text-slate-600">개설 유형: ${escapeHtml(payload.openType)}</div>
+        <div class="text-slate-600">희망 사유: ${escapeHtml(payload.reason)}</div>
+      `;
+      document.getElementById('modalSummary').innerHTML = summaryHtml;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeModalAndReset() {
+      const modal = document.getElementById('successModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+
+      // 폼 초기화
+      document.getElementById('surveyForm').reset();
+      document.getElementById('subjectNoteHint').classList.add('hidden');
+      document.getElementById('statusAlert').classList.add('hidden');
+    }
+
+    function escapeHtml(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+  </script>
+</body>
+</html>
